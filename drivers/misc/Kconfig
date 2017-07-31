@@ -872,6 +872,12 @@ config SYSTRACE
 	  to userspace and system events in the timeline.
 
 	  If in doubt, say N.
+	  
+config FORCE_FAST_CHARGE
+	bool "Force faster charge rate for USB"
+	default y
+	help
+	  This allows users to override default charge rate for USB
 
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"
