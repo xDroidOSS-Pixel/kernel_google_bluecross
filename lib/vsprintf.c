@@ -1563,7 +1563,6 @@ static struct notifier_block random_ready = {
 static int __init initialize_ptr_random(void)
 {
 	int ret = register_random_ready_notifier(&random_ready);
-
 	if (!ret) {
 		return 0;
 	} else if (ret == -EALREADY) {
