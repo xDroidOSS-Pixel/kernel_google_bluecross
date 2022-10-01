@@ -1556,12 +1556,8 @@ static int inode_doinit_with_dentry(struct inode *inode, struct dentry *opt_dent
 		sid = sbsec->sid;
 
 		/* Try to obtain a transition SID. */
-<<<<<<< HEAD
 		rc = security_transition_sid(&selinux_state, task_sid, sid,
 					     sclass, NULL, &sid);
-=======
-		rc = security_transition_sid(task_sid, sid, sclass, NULL, &sid);
->>>>>>> b80053a192a35d768184b697d51fbf5ed0316648
 		if (rc)
 			goto out;
 		break;
@@ -1593,11 +1589,7 @@ static int inode_doinit_with_dentry(struct inode *inode, struct dentry *opt_dent
 			 * could be used again by userspace.
 			 */
 			if (!dentry)
-<<<<<<< HEAD
 				goto out;
-=======
-				goto out_invalid;
->>>>>>> b80053a192a35d768184b697d51fbf5ed0316648
 			rc = selinux_genfs_get_sid(dentry, sclass,
 						   sbsec->flags, &sid);
 			dput(dentry);
@@ -1610,18 +1602,10 @@ static int inode_doinit_with_dentry(struct inode *inode, struct dentry *opt_dent
 out:
 	spin_lock(&isec->lock);
 	if (isec->initialized == LABEL_PENDING) {
-<<<<<<< HEAD
-		if (!sid || rc) {
-			isec->initialized = LABEL_INVALID;
-			goto out_unlock;
-		}
-
-=======
 		if (rc) {
 			isec->initialized = LABEL_INVALID;
 			goto out_unlock;
 		}
->>>>>>> b80053a192a35d768184b697d51fbf5ed0316648
 		isec->initialized = LABEL_INITIALIZED;
 		isec->sid = sid;
 	}
